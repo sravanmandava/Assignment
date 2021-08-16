@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    {% include 'baseapp/_head.html' %}
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>{% block body_title %}{% endblock %}</h1>
+    </div>
+
+    {% include 'baseapp/_messages.html' %}
+
+    {% block body_content %}{% endblock %}
+
+    <script src="{% static 'baseapp/js/scripts.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{% extends 'baseapp/_base_index.html' %}
+{% block title %}Home{% endblock %}
+{% block body_title %}User Management System{% endblock %}
+{% block body_content %}
+    <div class="container back01">
+        {% if user.is_anonymous %}
+            {% include 'baseapp/_notice_login.html' %}
+        {% elif user.is_superuser %}
+            <h2>Welcome! {{ user.first_name}} {{ user.last_name }}</h2>
+            <a class="btn btn-primary shadow-lg mr-1" role="button" href="{% url 'user-change' user.pk %}">Change Profile</a>
+            <a class="btn btn-primary shadow-lg mr-1" role="button" href="{% url 'password-change' %}">Change Password</a>
+            <a class="btn btn-primary shadow-lg mr-1" role="button" href="{% url 'user-delete' user.pk %}">Delete Profile</a>
+            <a class="btn btn-primary mr-1" role="button" href="{% url 'user-new' %}">Register User</a>
+            <a class="btn btn-primary shadow-lg mr-1" role="button" href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <h2>Welcome! {{ user.first_name}} {{ user.last_name }}</h2>
+            <a class="btn btn-primary shadow-lg mr-1" role="button" href="{% url 'user-change' user.pk %}">Change Profile</a>
+            <a class="btn btn-primary shadow-lg mr-1" role="button" href="{% url 'password-change' %}">Change Password</a>
+            <a class="btn btn-primary shadow-lg mr-1" role="button" href="{% url 'user-delete' user.pk %}">Delete Profile</a>
+
+            <a class="btn btn-primary shadow-lg mr-1" role="button" href="{% url 'logout' %}">Logout</a>
+        {% endif %}
+    </div>
+{% endblock %}
